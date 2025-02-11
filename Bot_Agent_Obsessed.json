@@ -1,0 +1,1029 @@
+{
+  "name": "Bot Agent Obsessed",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "a6bc0b57-7a8b-4cba-a18d-e6c283b8f13b",
+      "name": "Embeddings OpenAI",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "position": [
+        280,
+        280
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "openAiApi": {
+          "id": "7AOzedCcRviEL7q9",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "binary",
+        "options": {}
+      },
+      "id": "ab49e5cf-70d8-4901-b732-04282509b61c",
+      "name": "Default Data Loader",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "position": [
+        420,
+        280
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "chunkSize": 3000,
+        "chunkOverlap": 200,
+        "options": {}
+      },
+      "id": "84b518c4-644a-4841-8c94-e6b3916a95bb",
+      "name": "Recursive Character Text Splitter",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "position": [
+        500,
+        500
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.response }}",
+        "options": {}
+      },
+      "id": "c3c715fe-e271-4346-ab5f-f76787562f9d",
+      "name": "Question and Answer Chain",
+      "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
+      "position": [
+        -620,
+        180
+      ],
+      "typeVersion": 1.3
+    },
+    {
+      "parameters": {
+        "topK": 5
+      },
+      "id": "3e22a242-9c93-478a-8849-d1fdaa8318f8",
+      "name": "Vector Store Retriever",
+      "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
+      "position": [
+        -660,
+        400
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "agent-obssesed",
+          "mode": "list",
+          "cachedResultName": "agent-obssesed"
+        },
+        "options": {}
+      },
+      "id": "f170a94b-f1f6-4e2e-b374-32932321b613",
+      "name": "Pinecone Vector Store1",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "position": [
+        -720,
+        560
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "pineconeApi": {
+          "id": "guVkkyeWE6ik7hWQ",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "deepseek-r1-distill-llama-70b",
+        "options": {}
+      },
+      "id": "878594cf-f3d5-43d8-b000-94fbcbc42bc0",
+      "name": "Groq Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "position": [
+        -820,
+        400
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "groqApi": {
+          "id": "9Oo3fltb6XAXCI63",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# busca en evolution Api",
+        "height": 873.6068151028411,
+        "width": 1139.5159692915001,
+        "color": 7
+      },
+      "id": "f0c02da8-6c7d-4e4b-aae2-b7117bdffb5a",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        60,
+        -200
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "# Chat with Database\n\n1. **Receive** the incoming chat message.\n2. **Retrieve** relevant chunks from the _vector store_.\n3. **Pass** these chunks to the model.\n\nThe model will use the retrieved information to **formulate a precise response**.\n",
+        "height": 806.8716167324012,
+        "width": 1344.7918019808176,
+        "color": 7
+      },
+      "id": "79d468f0-b6d1-4f0d-941b-2ac9aa9d3b44",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1440,
+        100
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "d81397f2-3d37-4c5e-b6fb-c660d176c7d3",
+      "name": "Embeddings",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "position": [
+        -620,
+        740
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "openAiApi": {
+          "id": "7AOzedCcRviEL7q9",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "agent-obssesed",
+          "mode": "list",
+          "cachedResultName": "agent-obssesed"
+        },
+        "options": {}
+      },
+      "id": "0ec722c2-fe6c-40fc-97d6-5df0e5d3fab8",
+      "name": "Pinecone Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "position": [
+        380,
+        100
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "pineconeApi": {
+          "id": "guVkkyeWE6ik7hWQ",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "109a106a-6282-4fda-978f-b8959d5bba56",
+                    "leftValue": "={{ $json.data.message.conversation }}",
+                    "rightValue": "#agente",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "#agente"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "91c285a4-0d9d-4172-86bc-a825e9a35631",
+                    "leftValue": "={{ $json.data.message.conversation }}",
+                    "rightValue": "#agente-responde",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "#agente-responde"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "4f43f57f-5efb-4b8a-8eab-ba5e6ce7e20e",
+                    "leftValue": "={{ $json.data.message.conversation }}",
+                    "rightValue": "#agente resumen",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "#agente resumen"
+            }
+          ]
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -820,
+        -340
+      ],
+      "id": "96a1882e-c96d-454d-b754-81269303834f",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://202502022872-api-whatsapp-integralaia.up.railway.app/message/sendText/59519d703a176d37e70ae1ba1f32c6f13c",
+        "sendHeaders": true,
+        "specifyHeaders": "json",
+        "jsonHeaders": "{\"apiKey\":\"429683C4C977415CAAFCCE10F7D57E11\"}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.body }}",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -280,
+        -340
+      ],
+      "id": "998b66be-78e0-48ce-a884-8ac9b30ac939",
+      "name": "Send Menu"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://202502022872-api-whatsapp-integralaia.up.railway.app/chat/findMessages/59519d703a176d37e70ae1ba1f32c6f13c",
+        "sendHeaders": true,
+        "specifyHeaders": "json",
+        "jsonHeaders": "{\"apiKey\":\"429683C4C977415CAAFCCE10F7D57E11\"}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"where\": {\n        \"key\": {\n            \"remoteJid\": \"120363377924942024@g.us\"\n        }\n    },\n    \"page\": 1,\n    \"offset\": 1000\n}",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        320,
+        -140
+      ],
+      "id": "f9f917a9-4965-4662-a7d7-2905365178ff",
+      "name": "Get history"
+    },
+    {
+      "parameters": {
+        "operation": "toJson",
+        "binaryPropertyName": "={{ $json.history }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        720,
+        -140
+      ],
+      "id": "b504dfef-43c2-4e50-8bfb-c19ac1d1e6d2",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 30
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        120,
+        -140
+      ],
+      "id": "747f5a18-e5ad-42c2-83d8-73d7159f8b1f",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extraer el JSON de entrada\nconst input = items[0].json;\n\n// Extraer los datos necesarios con la nueva estructura\nconst remoteJid = input.data.key.remoteJid;\nconst conversation = input.data.message.conversation.trim().toLowerCase();\n\n// Definir respuestas solo para los comandos requeridos\nconst commandResponses = {\n  \"#agente\": \"🤖 *ObsessedAI el Agente de la comunidad Agents Obsessed* 🚀\\n¡Interactúa con tu agente de inteligencia artificial!\\n\\n📌 *Comandos disponibles:*\\n 👉 *#agente* – Ver comandos\\n 👉 *#agente-responde* – Haz tu pregunta  _ejemplo: Cúando es el próximo evento?_ \\n 👉 *#agente resumen* – Obtener un resumen rápido\\n\\n💡 _Usa los comandos en el chat para interactuar con tu agente de IA._\"\n};\n\n// Obtener la respuesta basada en el comando\nconst message = commandResponses[conversation] || \"⚠️ *Comando no reconocido.* Usa *#agente* para ver los comandos disponibles.\";\n\n// Formatear el JSON final con la estructura correcta para n8n\nconst finalJson = {\n  number: remoteJid,\n  text: message\n};\n\n// Retornar el JSON con la estructura requerida en n8n\nreturn [\n  {\n    json: {\n      body: finalJson\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -500,
+        -520
+      ],
+      "id": "dd7fc778-d498-4a37-ba6a-d2e2c42a79fd",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "7ec822a3-0ff1-4819-ad52-9ecf137cfaaf",
+      "name": "Embeddings OpenAI1",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "position": [
+        1460,
+        280
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "openAiApi": {
+          "id": "7AOzedCcRviEL7q9",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "binary",
+        "options": {}
+      },
+      "id": "97128adf-3174-4e72-8f09-b06e77801f1c",
+      "name": "Default Data Loader1",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "position": [
+        1600,
+        280
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "chunkSize": 3000,
+        "chunkOverlap": 200,
+        "options": {}
+      },
+      "id": "c7b183bd-2d99-47b8-bb03-b32b9d593443",
+      "name": "Recursive Character Text Splitter1",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "position": [
+        1680,
+        500
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "# Busca en notion\n",
+        "height": 894,
+        "width": 1140,
+        "color": 7
+      },
+      "id": "edb0591e-a333-4df1-92a0-cf58034ebdef",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1240,
+        -240
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "agent-obssesed",
+          "mode": "list",
+          "cachedResultName": "agent-obssesed"
+        },
+        "options": {}
+      },
+      "id": "362745da-58cc-47c3-8f2e-565de162071e",
+      "name": "Pinecone Vector Store2",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "position": [
+        1560,
+        100
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "pineconeApi": {
+          "id": "guVkkyeWE6ik7hWQ",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "4bd5da88-29a2-4cb6-ba7a-4463ea76ef75",
+      "name": "Limit to ",
+      "type": "n8n-nodes-base.limit",
+      "position": [
+        1960,
+        20
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "operation": "toJson",
+        "binaryPropertyName": "={{ $json.infonotion }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        1860,
+        -140
+      ],
+      "id": "ff817491-8d09-41d2-8e9c-32b038ac9f34",
+      "name": "Convert to File1"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 30
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        1300,
+        -140
+      ],
+      "id": "8028c1d8-4fd9-4276-905c-fad37d1fdc2c",
+      "name": "Schedule Trigger1"
+    },
+    {
+      "parameters": {
+        "url": "https://api.notion.com/v1/blocks/19644861b1fb80ccb4a3f06f416bc34b/children",
+        "sendHeaders": true,
+        "specifyHeaders": "json",
+        "jsonHeaders": "{\n  \"Authorization\": \"Bearer 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\",\n  \"Notion-Version\": \"2022-06-28\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1480,
+        -140
+      ],
+      "id": "c59acdea-cd29-4468-94bb-7a9aa34a2cb5",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "const blocks = items[0].json.results;\n\n// Función para extraer texto relevante de cada bloque\nconst extractText = (block) => {\n    let textContent = [];\n\n    // Verifica si el bloque tiene rich_text y extrae el texto\n    if (block[block.type] && block[block.type].rich_text) {\n        textContent.push(block[block.type].rich_text.map(t => t.plain_text).join(\" \"));\n    }\n\n    // Maneja menciones y enlaces en rich_text\n    if (block[block.type] && block[block.type].rich_text) {\n        block[block.type].rich_text.forEach(item => {\n            if (item.href) {\n                textContent.push(`(${item.href})`); // Agrega los enlaces entre paréntesis\n            }\n        });\n    }\n\n    // Devuelve el texto del bloque en un solo string\n    return textContent.join(\" \").trim();\n};\n\n// Procesar todos los bloques y concatenar el contenido relevante\nlet extractedText = blocks\n    .map(extractText)\n    .filter(text => text.trim() !== \"\") // Elimina textos vacíos\n    .join(\"\\n\"); // Une los textos con saltos de línea\n\n// Agregamos metadatos para que el vector sepa que es información de Notion\nreturn [{ \n    json: { \n        source: \"notion\",  // Especificamos que proviene de Notion\n        type: \"knowledge_base\", // Tipo de información, útil para vectorización\n        content: extractedText  // Texto extraído de Notion\n    } \n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1660,
+        -140
+      ],
+      "id": "8de1bb53-a465-4e37-9c1d-d0646e30704a",
+      "name": "clean Notion data"
+    },
+    {
+      "parameters": {
+        "jsCode": "const records = items[0].json.messages.records;\n\n// Usamos un Set para evitar duplicados y un array para construir el texto final\nconst seenMessages = new Set();\nconst conversationHistory = [];\n\nrecords\n    .filter(record => \n        record.messageType === \"conversation\" && \n        record.message.conversation &&\n        !record.key.fromMe // Excluimos los mensajes enviados por el usuario\n    )\n    .forEach(record => {\n        const pushName = record.pushName || \"Desconocido\";\n        const message = record.message.conversation;\n        const formattedMessage = `Usuario ${pushName}: dijo: ${message}`; // Formato: \"Usuario: Mensaje\"\n\n        if (!seenMessages.has(formattedMessage)) {\n            seenMessages.add(formattedMessage);\n            conversationHistory.push(formattedMessage);\n        }\n    });\n\n// Convertimos el array en un solo texto unificado\nconst conversationText = conversationHistory.join(\"\\n\");\n\nreturn [{ json: { history: conversationText } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        500,
+        -140
+      ],
+      "id": "4626171b-de80-430a-a372-f762c3789721",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extraer el JSON de entrada\nconst input = items[0].json;\n\n// Extraemos el mensaje del usuario\nconst lastMessage = input.data.message?.conversation?.toLowerCase() || \"\";\n\n// Extraemos las claves adicionales\nconst remoteJid = input.data.key?.remoteJid || \"\";\nconst fromMe = input.data.key?.fromMe || false;\nconst messageId = input.data.key?.id || \"\";\nconst participant = input.data.key?.participant || \"\";\n\nlet response = \"\";\n\nif (lastMessage.includes(\"#agente resumen\")) {\n    response = `\n    🔍 Para generar un resumen de la conversación:\n\n    1️⃣ Se hará una búsqueda en la base vectorial de Pinecone.  \n    2️⃣ Se identificarán los mensajes más relevantes.  \n    3️⃣ Se estructurará un resumen con los puntos clave.  \n\n    📌 **Ejemplo de consulta:**  \n    \"¿De qué se ha hablado últimamente sobre IA?\"  \n\n    📝 **Ejemplo de respuesta:**  \n    **Tema Principal:** Optimización de agentes conversacionales con IA.  \n    📍 **Lo más destacado:**  \n    - Se han explorado mejoras en WhatsApp para agentes conversacionales.  \n    - Se mencionaron herramientas como LangChain y OpenAI.  \n    - Se propuso integrar Pinecone para mejorar búsquedas.  \n    🔎 **Conclusión:** El enfoque ha sido optimizar el rendimiento de los agentes y mejorar la recuperación de información.\n\n    🛑 **Nota importante:** No se incluyen menús ni información del agente.\n\n    ⚖️ **Reglas de la comunidad:**  \n    - Aquí no solo se aprende, también hay que poner en práctica.  \n    - No es un espacio para vender productos.  \n    - No monopolices discusiones ni busques destacar por ego.  \n    - No está orientado a la construcción de marca personal.\n    responde en formato whatsapp para no tener problemas de decodificación\n    `;\n} else if (lastMessage.includes(\"#agente-responde\")) {\n    response = `\n    🤖 Eres un asistente con la capacidad de analizar conversaciones y extraer información clave.  \n    Puedes acceder al historial de mensajes almacenados en Pinecone.  \n\n    🚀 **Cómo responderás:**  \n    1️⃣ Buscarás información relevante en Pinecone.  \n    2️⃣ Filtrarás datos redundantes, conservando solo lo esencial.  \n    3️⃣ Organizarás la respuesta de forma clara y concisa.  \n\n    📌 **Ejemplo de pregunta:**  \n    \"¿Qué se ha discutido últimamente sobre inteligencia artificial?\"  \n\n    📌 **Ejemplo de respuesta:**  \n    **🔹 Tema Principal:** Tendencias recientes en IA para asistentes virtuales.  \n    **📌 Puntos clave:**  \n    - Se han explorado estrategias para mejorar respuestas en WhatsApp.  \n    - Herramientas como LangChain y OpenAI han sido mencionadas varias veces.  \n    - Se sugirió el uso de Pinecone para búsquedas optimizadas.  \n    **💡 Conclusión:** La discusión ha girado en torno a potenciar la capacidad de recuperación de información y mejorar el desempeño de los agentes.\n\n    🛑 **Nota:** Ignora menús e información irrelevante del agente.  \n    📂 También puedes acceder a información de Notion almacenada en Pinecone.  \n\n    ⚖️ **Reglas de la comunidad:**  \n    - Aquí no solo se aprende, hay que actuar.  \n    - No se permite vender productos.  \n    - Evita monopolizar discusiones.  \n    - Este espacio no es para trabajar en marca personal.\nresponde en formato whatsapp para no tener problemas de decodificación\n    **📝 Pregunta recibida:** ${lastMessage}\n    `;\n} else {\n    response = \"❌ *Comando no reconocido.* Escribe *#agente* para conocer las opciones disponibles.\";\n}\n\n// Formatear el JSON final con las claves adicionales\nreturn [{\n    json: {\n        response,\n        dataMessage: {\n            remoteJid,\n            fromMe,\n            id: messageId,\n            participant\n        }\n    }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -860,
+        160
+      ],
+      "id": "15e72929-006f-45b7-aaf0-7182df2a3bd8",
+      "name": "Select Prompt"
+    },
+    {
+      "parameters": {
+        "queue": "59519d703a176d37e70ae1ba1f32c6f13c.messages.upsert",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rabbitmqTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1560,
+        -140
+      ],
+      "id": "ac203672-f1a1-4be4-9499-a733f31330d8",
+      "name": "RabbitMQ Trigger",
+      "credentials": {
+        "rabbitmq": {
+          "id": "krf6iOoMiMPzT11z",
+          "name": "RabbitMQ account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Iteramos sobre los elementos de entrada\nreturn items.map(item => {\n    try {\n        // Verificamos que el campo `content` exista y lo parseamos\n        if (item.json && item.json.content) {\n            const parsedContent = JSON.parse(item.json.content);\n            return { json: parsedContent }; // Retornamos en formato JSON\n        } else {\n            return { json: { error: \"No content found in item\" } };\n        }\n    } catch (error) {\n        return { json: { error: \"Error parsing content\", details: error.message } };\n    }\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1300,
+        -220
+      ],
+      "id": "6fb709b0-44ec-4028-b819-c43b75ef3bc4",
+      "name": "Code2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://202502022872-api-whatsapp-integralaia.up.railway.app/message/sendText/59519d703a176d37e70ae1ba1f32c6f13c",
+        "sendHeaders": true,
+        "specifyHeaders": "json",
+        "jsonHeaders": "{\"apiKey\":\"429683C4C977415CAAFCCE10F7D57E11\"}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"number\": \"{{ $('Select Prompt').item.json.dataMessage.remoteJid }}\",\n  \"text\": \"{{ $('Question and Answer Chain').item.json.response.text.split('</think>').pop().trim().replace(/\\n/g, '\\\\n') }}\",\n  \"quoted\": {\n    \"key\": {\n      \"remoteJid\": \"\",\n      \"fromMe\":{{ $('Select Prompt').item.json.dataMessage.fromMe }} ,\n      \"id\": \"{{ $('Select Prompt').item.json.dataMessage.id }}\",\n      \"participant\": \"{{ $('Select Prompt').item.json.dataMessage.participant }}\"\n    }\n  }\n}",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -300,
+        320
+      ],
+      "id": "9f0d7425-bb70-4350-895a-bd12572c2846",
+      "name": "Sen respond AI"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "8839993b-9fe7-4e1e-a1cc-fe5de6b0bb62",
+              "operator": {
+                "type": "string",
+                "operation": "endsWith"
+              },
+              "leftValue": "={{ $json.data.key.remoteJid }}",
+              "rightValue": "@g.us"
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "31f4bdab-8160-4e11-a443-e530b34f39fa",
+      "name": "Check If is a group chat",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        -1100,
+        -300
+      ],
+      "typeVersion": 2
+    }
+  ],
+  "pinData": {
+    "RabbitMQ Trigger": [
+      {
+        "json": {
+          "fields": {
+            "consumerTag": "amq.ctag-OU8cNjSqv3C1bX7Dd3jJbA",
+            "deliveryTag": 6,
+            "redelivered": false,
+            "exchange": "59519d703a176d37e70ae1ba1f32c6f13c",
+            "routingKey": "messages.upsert"
+          },
+          "properties": {
+            "headers": {}
+          },
+          "content": "{\"event\":\"messages.upsert\",\"instance\":\"59519d703a176d37e70ae1ba1f32c6f13c\",\"data\":{\"key\":{\"remoteJid\":\"120363377924942024@g.us\",\"fromMe\":false,\"id\":\"3EB0284B5DF5FC1FCBFCE8\",\"participant\":\"573115977041@s.whatsapp.net\"},\"pushName\":\"BETA🐲\",\"status\":\"DELIVERY_ACK\",\"message\":{\"conversation\":\"#agente-responde Genera una lista de los mejores 3 recursos en linea para aprender a hacer integracion rapida de n8n y whatsApp\",\"messageContextInfo\":{\"messageSecret\":\"ps1gtpTy6uJn7Fv01Bpvyx0RtakKM7htruODRFGJdZw=\"}},\"messageType\":\"conversation\",\"messageTimestamp\":1739281161,\"instanceId\":\"490e406e-729c-4e5e-8ea0-ba5849b39954\",\"source\":\"web\"},\"server_url\":\"http://localhost:8080\",\"date_time\":\"2025-02-11T08:39:22.418Z\",\"sender\":\"573150155362@s.whatsapp.net\",\"apikey\":\"5B668098-0022-4D15-9E10-79238ED6DEA6\"}"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Embeddings": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Question and Answer Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store": {
+      "main": [
+        []
+      ]
+    },
+    "Pinecone Vector Store1": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Vector Store Retriever",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vector Store Retriever": {
+      "ai_retriever": [
+        [
+          {
+            "node": "Question and Answer Chain",
+            "type": "ai_retriever",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Question and Answer Chain": {
+      "main": [
+        [
+          {
+            "node": "Sen respond AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Select Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Select Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Menu": {
+      "main": [
+        []
+      ]
+    },
+    "Get history": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get history",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Send Menu",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store2",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader1": {
+      "ai_document": [
+        [
+          {
+            "node": "Pinecone Vector Store2",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter1": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader1",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store2": {
+      "main": [
+        [
+          {
+            "node": "Limit to ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit to ": {
+      "main": [
+        []
+      ]
+    },
+    "Convert to File1": {
+      "main": [
+        [
+          {
+            "node": "Pinecone Vector Store2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "clean Notion data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "clean Notion data": {
+      "main": [
+        [
+          {
+            "node": "Convert to File1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select Prompt": {
+      "main": [
+        [
+          {
+            "node": "Question and Answer Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RabbitMQ Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "Check If is a group chat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check If is a group chat": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "b72fc44a-7096-42e1-83bb-48206860365c",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "895aca6bd5d31884093b9ef36bd623deee967d11f6606c12f65276dfa1517323"
+  },
+  "id": "sUxGhSOWN3J86Q4Y",
+  "tags": []
+}
